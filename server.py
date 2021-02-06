@@ -1,13 +1,15 @@
 import os
 from socket import *
 import pyautogui as pag
+
 host = ""
 port = 13000
 buf = 1024
 addr = (host, port)
 UDPSock = socket(AF_INET, SOCK_DGRAM)
 UDPSock.bind(addr)
-print("Waiting to receive messages...")
+
+print("Waiting to receive input")
 while True:
 	(data, addr) = UDPSock.recvfrom(buf)
 	#print("Received message")
@@ -23,6 +25,6 @@ while True:
 	print("X Coord: " + x)
 	print("Y Coord: " + y)
 	pag.moveTo(int(x), int(y), .25, pag.easeInOutQuad)
-	
+
 UDPSock.close()
 os._exit(0)
